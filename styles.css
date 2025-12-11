@@ -1,0 +1,58 @@
+#overall {
+    display: flex;   
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 100px;
+}
+
+#textbox {
+    display: flex;
+    flex-direction: row;
+    width: 145px;
+    height: 20px;
+    border:  3px solid black;
+}
+
+#btns {
+    display: flex;   
+    justify-content: center;
+    align-items: center;
+}
+
+button {
+    width: 30px;
+}
+
+
+#left{
+    display: flex;
+    flex-direction: column;
+}
+
+#right{
+    display: flex;
+}
+
+#operators {
+    display: flex;
+    flex-direction: column;
+    /* gap: 5px; */
+    margin-left: 10px;
+}
+
+#numbers {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 110px;
+    gap: 5px;
+}
+
+#zcrow {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100px;
+    margin-top: 5px;
+}
