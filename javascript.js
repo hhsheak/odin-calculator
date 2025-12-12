@@ -34,8 +34,6 @@ function clear() {
     }
 }
 
-// let num1 = document.createElement("div")
-// let num2 = document.createElement("div")
 let num = document.createElement("div")
 let tempNum = ""
 let firstNo
@@ -63,10 +61,6 @@ numsOperator.forEach((button) => {
     })
 })
 
-
-function getNumber(button) {
-}
-
 let opr = document.createElement("div")
 let oper
 let oprOperator = document.querySelectorAll(".oprs")
@@ -76,6 +70,7 @@ oprOperator.forEach((button) => {
         clear()
         if (isFirstNumber) {
             firstNo = (Number) (tempNum)
+            firstNo = Number.isNaN(firstNo) ? 0 : firstNo
             isFirstNumber = false
             console.log(firstNo)
             tempNum = ""
@@ -103,30 +98,38 @@ let isCalculated = false
 let value
 let eqlBtn = document.getElementById("equals")
 eqlBtn.addEventListener("click", () => {
+    console.log(firstNo,oper,secondNo)
     clear()
-    secondNo = (Number) (tempNum)
-    if (secondNo === 0 && oper === "/") {
-        clear()
-        textBox.appendChild(errorMessage)
-        oper = ""
-        tempNum = ""
-        firstNo = null
-        secondNo = null
-        isFirstNumber = true
-        console.log(firstNo,oper,secondNo)
+    if (firstNo === undefined || oper === "") {
+        errorMessageShower()
     } else {
-        tempNum = ""
-        value = operate(firstNo, oper, secondNo)
-        value = Math.round(value* 100) / 100
-        value = Number.isNaN(value) ? 0 : value // Returns value as 0 if any value is NaN (e.g. firstNo is only ".")
-        let result = document.createElement("div")
-        result.innerHTML = value
-        textBox.appendChild(result)
-        firstNo = value
-        oper = ""
-        tempNum = ""
-        secondNo = ""
-        console.log(firstNo,oper,secondNo)
-        isCalculated = true
+        secondNo = (Number) (tempNum)
+        secondNo = Number.isNaN(secondNo) ? 0 : secondNo
+        if (secondNo === 0 && oper === "/") {
+            errorMessageShower()
+        } else {
+            tempNum = ""
+            value = operate(firstNo, oper, secondNo)
+            value = Math.round(value* 100) / 100
+            let result = document.createElement("div")
+            result.innerHTML = value
+            textBox.appendChild(result)
+            firstNo = value
+            oper = ""
+            tempNum = ""
+            secondNo = ""
+            isCalculated = true
+        }
     }
 })
+
+function errorMessageShower() {
+    clear()
+    textBox.appendChild(errorMessage)
+    oper = ""
+    tempNum = ""
+    firstNo = null
+    secondNo = null
+    isFirstNumber = true
+    console.log(firstNo,oper,secondNo)
+}
