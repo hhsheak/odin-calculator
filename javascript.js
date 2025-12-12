@@ -43,6 +43,12 @@ let secondNo
 const textBox = document.getElementById("textbox")
 let isFirstNumber = true
 
+let hasDecimalPlace = false
+let decimalButton = document.getElementById("decimal")
+decimalButton.addEventListener("click", () => {
+    decimalButton.style.display = "none"
+})
+
 let numsOperator = document.querySelectorAll(".nums")
 numsOperator.forEach((button) => {
     button.addEventListener("click", () => {
@@ -67,6 +73,7 @@ let oprOperator = document.querySelectorAll(".oprs")
 oprOperator.forEach((button) => {
     button.addEventListener("click", () => {
         isCalculated = false
+        decimalButton.style.display = "block"
         clear()
         if (isFirstNumber) {
             firstNo = (Number) (tempNum)
@@ -119,6 +126,7 @@ eqlBtn.addEventListener("click", () => {
             tempNum = ""
             secondNo = ""
             isCalculated = true
+            decimalButton.style.display = "block"
         }
     }
 })
