@@ -140,4 +140,5 @@ function errorMessageShower() {
     secondNo = null
     isFirstNumber = true
     console.log(firstNo,oper,secondNo)
+    decimalButton.style.display = "block"
 }
