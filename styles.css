@@ -11,13 +11,18 @@
     flex-direction: row;
     width: 145px;
     height: 20px;
-    border:  3px solid black;
+    border: 3px solid black;
+}
+
+#textbox div {
+    margin-left: 2px;
 }
 
 #btns {
     display: flex;   
     justify-content: center;
     align-items: center;
+    margin-top: 5px;
 }
 
 button {
@@ -37,7 +42,6 @@ button {
 #operators {
     display: flex;
     flex-direction: column;
-    /* gap: 5px; */
     margin-left: 10px;
 }
 
@@ -55,4 +59,8 @@ button {
     justify-content: space-between;
     width: 100px;
     margin-top: 5px;
+}
+
+.oprs {
+    height: 20px;
 }
