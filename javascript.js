@@ -49,14 +49,14 @@ let numsOperator = document.querySelectorAll(".nums")
 numsOperator.forEach((button) => {
     button.addEventListener("click", () => {
         clear()
-        if (oper === "") {
+        if (isCalculated === true) {
             oper = ""
             tempNum = ""
             firstNo = null
             secondNo = null
             isFirstNumber = true
             isCalculated = false
-        }
+        } 
         tempNum += button.textContent
         num.textContent = tempNum
         textBox.appendChild(num)
@@ -72,10 +72,12 @@ let oper
 let oprOperator = document.querySelectorAll(".oprs")
 oprOperator.forEach((button) => {
     button.addEventListener("click", () => {
+        isCalculated = false
         clear()
         if (isFirstNumber) {
             firstNo = (Number) (tempNum)
             isFirstNumber = false
+            console.log(firstNo)
             tempNum = ""
         } 
         opr.innerHTML = button.textContent
@@ -97,12 +99,13 @@ clrBtn.addEventListener("click", () => {
 let errorMessage = document.createElement("div")
 errorMessage.textContent = "Error! Cleared!"
 
+let isCalculated = false
 let value
 let eqlBtn = document.getElementById("equals")
 eqlBtn.addEventListener("click", () => {
     clear()
     secondNo = (Number) (tempNum)
-    if (secondNo === 0 || secondNo === NaN) {
+    if (secondNo === 0 && oper === "/") {
         clear()
         textBox.appendChild(errorMessage)
         oper = ""
@@ -115,6 +118,7 @@ eqlBtn.addEventListener("click", () => {
         tempNum = ""
         value = operate(firstNo, oper, secondNo)
         value = Math.round(value* 100) / 100
+        value = Number.isNaN(value) ? 0 : value // Returns value as 0 if any value is NaN (e.g. firstNo is only ".")
         let result = document.createElement("div")
         result.innerHTML = value
         textBox.appendChild(result)
@@ -123,5 +127,6 @@ eqlBtn.addEventListener("click", () => {
         tempNum = ""
         secondNo = ""
         console.log(firstNo,oper,secondNo)
+        isCalculated = true
     }
 })
